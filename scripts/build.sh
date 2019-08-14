@@ -1,0 +1,2 @@
+ant -buildfile ./src/build/build.xml
+$JAVA_HOME/bin/jpackage --package-type $PACKAGE_TYPE -o $BUILD_PATH -i $JARS_PATH --app-version $VERSION --main-class $MAIN_CLASS --main-jar $MAIN_JAR -n $NAME $MAC_PARAMS $LINUX_PARAMS $WINDOWS_PARAMS

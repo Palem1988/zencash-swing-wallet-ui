@@ -1,1 +1,18 @@
-language: java
+install:
+  - chmod 755 ./scripts/install.sh && source ./scripts/install.sh
+  - chmod 755 ./scripts/setup-env.sh && source ./scripts/setup-env.sh
+script: chmod 755 ./scripts/build.sh && ./scripts/build.sh
+deploy:
+  provider: releases
+  file: "$BUILD_PATH/$NAME-$VERSION.$PACKAGE_TYPE"
+matrix:
+  include:
+  - os: osx
+    language: java
+  - os: linux
+    language: java
+  - os: windows
+    language: shell
+    before_install:
+      - powershell Install-WindowsFeature Net-Framework-Core
+      - cinst -y wixtoolset
